@@ -48,73 +48,61 @@ It is guaranteed that s is a valid roman numeral in the range [1, 3999].
 
  */
 
+public class P0013RomanToIntegerEasy {
 
-public class P0013RomanToIntegerEasy
-{
-
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		P0013RomanToIntegerEasy rToI = new P0013RomanToIntegerEasy();
-		
+
 		System.out.println(rToI.romanToInt("MCMXCIV"));
 	}
 
-	public int romanToInt(String s)
-	{
+	public int romanToInt(String s) {
 		int sum = 0;
 		char prev = 0;
 		char[] sArray = s.toCharArray();
-		for (char c : sArray)
-		{
-			switch(c)
-			{
+		for (char c : sArray) {
+			switch (c) {
 			case 'I':
 				sum = sum + 1;
 				prev = 'I';
 				break;
 			case 'V':
-				if (prev == 'I')
-				{
+				if (prev == 'I') {
 					sum = sum - 2;
 				}
 				sum = sum + 5;
 				prev = 'V';
 				break;
 			case 'X':
-				if (prev == 'I')
-				{
+				if (prev == 'I') {
 					sum = sum - 2;
 				}
 				sum = sum + 10;
 				prev = 'X';
 				break;
 			case 'L':
-				if (prev == 'X')
-				{
+				if (prev == 'X') {
 					sum = sum - 20;
 				}
 				sum = sum + 50;
 				prev = 'L';
 				break;
 			case 'C':
-				if (prev == 'X')
-				{
+				if (prev == 'X') {
 					sum = sum - 20;
 				}
 				sum = sum + 100;
 				prev = 'C';
 				break;
 			case 'D':
-				if (prev == 'C')
-				{
+				if (prev == 'C') {
 					sum = sum - 200;
 				}
 				sum = sum + 500;
 				prev = 'D';
 				break;
 			case 'M':
-				if (prev == 'C')
-				{
+				if (prev == 'C') {
 					sum = sum - 200;
 				}
 				sum = sum + 1000;

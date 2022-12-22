@@ -37,16 +37,14 @@ Only one valid answer exists.
 
  */
 
-public class P0001TwoSumEasy
-{
-	public static void main(String[] args)
-	{
+public class P0001TwoSumEasy {
+	public static void main(String[] args) {
 		P0001TwoSumEasy twoSum1 = new P0001TwoSumEasy();
-		int[] nums = {3,2,4};
+		int[] nums = { 3, 2, 4 };
 		int target = 6;
 		System.out.println(Arrays.toString(twoSum1.twoSum(nums, target)));
 	}
-	
+
 //	public int[] twoSum(int[] nums, int target)
 //	{
 //		int[] newNums = new int[2];
@@ -72,39 +70,31 @@ public class P0001TwoSumEasy
 //		}
 //		return null;
 //	}
-	
-	public int[] twoSum(int[] nums, int target)
-	{
+
+	public int[] twoSum(int[] nums, int target) {
 		HashMap<Integer, Integer> map = new HashMap<>();
 		int[] newNums = new int[2];
-		for (int i = 0; i < nums.length; i++)
-		{
-			if (!map.containsKey(nums[i]))
-			{
+		for (int i = 0; i < nums.length; i++) {
+			if (!map.containsKey(nums[i])) {
 				map.put(nums[i], i);
-			}
-			else
-			{
-				if (target == 2 * nums[i])
-				{
+			} else {
+				if (target == 2 * nums[i]) {
 					newNums[0] = map.get(nums[i]);
 					newNums[1] = i;
 					return newNums;
 				}
 			}
 		}
-		
-		for (int i = 0; i < nums.length; i++)
-		{
+
+		for (int i = 0; i < nums.length; i++) {
 			int diff = target - nums[i];
-			if (map.containsKey(diff) && map.get(diff) != i)
-			{
+			if (map.containsKey(diff) && map.get(diff) != i) {
 				newNums[0] = i;
 				newNums[1] = map.get(diff);
 				return newNums;
 			}
 		}
-		
+
 		return null;
 	}
 }

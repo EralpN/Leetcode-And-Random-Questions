@@ -23,30 +23,24 @@ Constraints:
 
  */
 
-public class P0217ContainsDuplicateEasy
-{
-	public static void main(String[] args)
-	{
+public class P0217ContainsDuplicateEasy {
+	public static void main(String[] args) {
 		P0217ContainsDuplicateEasy dupe = new P0217ContainsDuplicateEasy();
-		int[] nums = {1,1,1,3,3,4,3,2,4,2};
-		
-		
+		int[] nums = { 1, 1, 1, 3, 3, 4, 3, 2, 4, 2 };
+
 		System.out.println(dupe.containsDuplicate(nums));
 
 	}
 
-	private boolean containsDuplicate(int[] nums)
-	{
+	private boolean containsDuplicate(int[] nums) {
 		boolean hasDuplicate = false;
-		
+
 		Set<Integer> tempSet = Arrays.stream(nums).boxed().collect(Collectors.toSet());
-		
-		if (nums.length != tempSet.size())
-		{
+
+		if (nums.length != tempSet.size()) {
 			hasDuplicate = true;
 		}
-		
+
 		return hasDuplicate;
 	}
 }
-

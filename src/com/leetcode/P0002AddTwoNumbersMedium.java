@@ -29,216 +29,172 @@ It is guaranteed that the list represents a number that does not have leading ze
 
  */
 
-public class P0002AddTwoNumbersMedium
-{
-	public static void main(String[] args)
-	{
+public class P0002AddTwoNumbersMedium {
+	public static void main(String[] args) {
 		P0002AddTwoNumbersMedium addnum = new P0002AddTwoNumbersMedium();
 		ListNode res = addnum.new ListNode();
-		
-		res = addnum.addTwoNumbers(addnum.new ListNode(9, addnum.new ListNode(9, addnum.new ListNode(9, addnum.new ListNode(9, addnum.new ListNode(9, addnum.new ListNode(9, addnum.new ListNode(9))))))), addnum.new ListNode(9, addnum.new ListNode(9, addnum.new ListNode(9, addnum.new ListNode(9)))));
-		
+
+		res = addnum.addTwoNumbers(
+				addnum.new ListNode(9,
+						addnum.new ListNode(9, addnum.new ListNode(9,
+								addnum.new ListNode(9,
+										addnum.new ListNode(9, addnum.new ListNode(9, addnum.new ListNode(9))))))),
+				addnum.new ListNode(9, addnum.new ListNode(9, addnum.new ListNode(9, addnum.new ListNode(9)))));
+
 		System.out.println(res.val);
-		while (res.next != null)
-		{
+		while (res.next != null) {
 			System.out.println(res.next.val);
 			res = res.next;
 		}
 	}
 
-	public ListNode addTwoNumbers(ListNode l1, ListNode l2)
-	{
+	public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
 		ListNode result = new ListNode();
 		ListNode temp;
 		int[] nums1 = new int[100];
 		int[] nums2 = new int[100];
-		
+
 		int l1LastIndex = 0;
 		temp = l1;
 		nums1[0] = temp.val;
 		int count = 1;
-		while (temp.next != null)
-		{
+		while (temp.next != null) {
 			temp = temp.next;
 			nums1[count] = temp.val;
 			l1LastIndex = count;
 			count++;
 		}
-		
+
 		int l2LastIndex = 0;
 		temp = l2;
 		nums2[0] = temp.val;
 		count = 1;
-		while (temp.next != null)
-		{
+		while (temp.next != null) {
 			temp = temp.next;
 			nums2[count] = temp.val;
 			l2LastIndex = count;
 			count++;
 		}
-		
-		if (l2LastIndex > l1LastIndex)
-		{
+
+		if (l2LastIndex > l1LastIndex) {
 			int over9 = 0;
 			int val = nums1[0] + nums2[0];
-			if (val > 9)
-			{
+			if (val > 9) {
 				over9 = val / 10;
 				val = val % 10;
 			}
-			
+
 			result.val = val;
 			result.next = new ListNode();
 			temp = result.next;
-			
-			for (int i = 1; i <= l1LastIndex; i++)
-			{
-				if (over9 != 0)
-				{
+
+			for (int i = 1; i <= l1LastIndex; i++) {
+				if (over9 != 0) {
 					val = nums1[i] + nums2[i] + over9;
 					over9 = 0;
-				}
-				else
-				{
+				} else {
 					val = nums1[i] + nums2[i];
 				}
-				
-				if (val > 9)
-				{
+
+				if (val > 9) {
 					over9 = val / 10;
 					val = val % 10;
 				}
-				
+
 				temp.val = val;
 				temp.next = new ListNode();
 				temp = temp.next;
 			}
-			
-			for (int i = l1LastIndex + 1; i <= l2LastIndex; i++)
-			{
-				if (over9 != 0)
-				{
+
+			for (int i = l1LastIndex + 1; i <= l2LastIndex; i++) {
+				if (over9 != 0) {
 					val = nums2[i] + over9;
 					over9 = 0;
-				}
-				else
-				{
+				} else {
 					val = nums2[i];
 				}
-				
-				if (val > 9)
-				{
+
+				if (val > 9) {
 					over9 = val / 10;
 					val = val % 10;
 				}
-				
+
 				temp.val = val;
-				
-				if (i == l2LastIndex && over9 == 0)
-				{
-					
-				} 
-				else if (i == l2LastIndex && over9 != 0)
-				{
+
+				if (i == l2LastIndex && over9 == 0) {
+
+				} else if (i == l2LastIndex && over9 != 0) {
 					temp.next = new ListNode(over9);
-				}
-				else
-				{
+				} else {
 					temp.next = new ListNode();
 					temp = temp.next;
 				}
 			}
-		}
-		else
-		{
+		} else {
 			int over9 = 0;
 			int val = nums1[0] + nums2[0];
-			if (val > 9)
-			{
+			if (val > 9) {
 				over9 = val / 10;
 				val = val % 10;
 			}
-			
+
 			result.val = val;
-			
-			if (l2LastIndex == 0 && l1LastIndex == 0)
-			{
-				if (over9 != 0)
-				{
+
+			if (l2LastIndex == 0 && l1LastIndex == 0) {
+				if (over9 != 0) {
 					result.next = new ListNode(over9);
 				}
-			}
-			else
-			{
+			} else {
 				result.next = new ListNode();
 				temp = result.next;
 			}
-			
-			for (int i = 1; i <= l2LastIndex; i++)
-			{
-				if (over9 != 0)
-				{
+
+			for (int i = 1; i <= l2LastIndex; i++) {
+				if (over9 != 0) {
 					val = nums1[i] + nums2[i] + over9;
 					over9 = 0;
-				}
-				else
-				{
+				} else {
 					val = nums1[i] + nums2[i];
 				}
-				
-				if (val > 9)
-				{
+
+				if (val > 9) {
 					over9 = val / 10;
 					val = val % 10;
 				}
-				
+
 				temp.val = val;
-				
-				if (l1LastIndex == l2LastIndex && i == l2LastIndex)
-				{
-					if (over9 != 0)
-					{
+
+				if (l1LastIndex == l2LastIndex && i == l2LastIndex) {
+					if (over9 != 0) {
 						temp.next = new ListNode(over9);
 					}
-				}
-				else
-				{
+				} else {
 					temp.next = new ListNode();
 					temp = temp.next;
 				}
-				
+
 			}
-			
-			for (int i = l2LastIndex + 1; i <= l1LastIndex; i++)
-			{
-				if (over9 != 0)
-				{
+
+			for (int i = l2LastIndex + 1; i <= l1LastIndex; i++) {
+				if (over9 != 0) {
 					val = nums1[i] + over9;
 					over9 = 0;
-				}
-				else
-				{
+				} else {
 					val = nums1[i];
 				}
-				
-				if (val > 9)
-				{
+
+				if (val > 9) {
 					over9 = val / 10;
 					val = val % 10;
 				}
-				
+
 				temp.val = val;
-				
-				if (i == l1LastIndex && over9 == 0)
-				{
-					
-				} 
-				else if (i == l1LastIndex && over9 != 0)
-				{
+
+				if (i == l1LastIndex && over9 == 0) {
+
+				} else if (i == l1LastIndex && over9 != 0) {
 					temp.next = new ListNode(over9);
-				}
-				else
-				{
+				} else {
 					temp.next = new ListNode();
 					temp = temp.next;
 				}
@@ -248,22 +204,18 @@ public class P0002AddTwoNumbersMedium
 	}
 
 	// Definition for singly-linked list.
-	public class ListNode
-	{
+	public class ListNode {
 		int val;
 		ListNode next;
 
-		ListNode()
-		{
+		ListNode() {
 		}
 
-		ListNode(int val)
-		{
+		ListNode(int val) {
 			this.val = val;
 		}
 
-		ListNode(int val, ListNode next)
-		{
+		ListNode(int val, ListNode next) {
 			this.val = val;
 			this.next = next;
 		}

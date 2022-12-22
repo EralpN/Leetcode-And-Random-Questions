@@ -30,50 +30,38 @@ Constraints:
 s consists of English letters, digits, symbols and spaces.
 
  */
-public class P0003LongestSubstringWithoutRepeatEasy
-{
+public class P0003LongestSubstringWithoutRepeatEasy {
 
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		P0003LongestSubstringWithoutRepeatEasy len = new P0003LongestSubstringWithoutRepeatEasy();
-		
+
 		System.out.println(len.lengthOfLongestSubstring("abcabcbb"));
 		System.out.println(len.lengthOfLongestSubstring("bbbbb"));
 		System.out.println(len.lengthOfLongestSubstring("pwwkew"));
 		System.out.println(len.lengthOfLongestSubstring("dvdf"));
 	}
 
-	public int lengthOfLongestSubstring(String s)
-	{
+	public int lengthOfLongestSubstring(String s) {
 		char[] chars = s.toCharArray();
 		int index = 0;
 		int count = 0;
 		int longest = 0;
 		HashSet<Character> set = new HashSet<>();
-		
-		for (Character c : chars)
-		{
-			if (set.add(c))
-			{
-				count ++;
-				if (count > longest)
-				{
+
+		for (Character c : chars) {
+			if (set.add(c)) {
+				count++;
+				if (count > longest) {
 					longest = count;
 				}
-			}
-			else
-			{
+			} else {
 				set.clear();
 				int tempCount = index - count + 1;
 				count = 0;
-				for(int i = tempCount; i <= index; i++)
-				{
-					if (set.add(chars[i]))
-					{
+				for (int i = tempCount; i <= index; i++) {
+					if (set.add(chars[i])) {
 						count++;
-					}
-					else
-					{
+					} else {
 						set.clear();
 						i = tempCount;
 						tempCount++;
@@ -83,7 +71,7 @@ public class P0003LongestSubstringWithoutRepeatEasy
 			}
 			index++;
 		}
-		
+
 		return longest;
-    }
+	}
 }

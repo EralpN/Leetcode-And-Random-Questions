@@ -7,10 +7,9 @@ public class P0006ZigzagConversionMedium
 //	s consists of English letters (lower-case and upper-case), ',' and '.'.
 //	1 <= numRows <= 1000
 	
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		P0006ZigzagConversionMedium q = new P0006ZigzagConversionMedium();
-		
+
 		String inputString = "PAYPALISHIRING";
 		System.out.println(q.convert(inputString, 2));
 		/* 
@@ -56,33 +55,26 @@ public class P0006ZigzagConversionMedium
 		System.out.println(q.convert("A", 1));
 	}
 
-	public String convert(String s, int numRows)
-	{
-		if (numRows == 1)
-		{
+	public String convert(String s, int numRows) {
+		if (numRows == 1) {
 			return s;
 		}
 		char[] chars = s.toCharArray();
 		int length = chars.length;
 		String zigzagString = "";
 		int spaceBetweenColumns = numRows - 2;
-		
-		for (int row = 0; row < numRows; row++)
-		{
+
+		for (int row = 0; row < numRows; row++) {
 			// Start and End Rows
-			if (row == 0 || row == (numRows - 1))
-			{
-				for (int i = row; i < length; i += (numRows + spaceBetweenColumns))
-				{
+			if (row == 0 || row == (numRows - 1)) {
+				for (int i = row; i < length; i += (numRows + spaceBetweenColumns)) {
 					zigzagString += chars[i];
 				}
 			}
 			// Other Rows
-			else
-			{
+			else {
 				boolean wide = false;
-				for (int i = row; i < length; i += wide ? 2 * (numRows - row - 1) : 2 * row)
-				{
+				for (int i = row; i < length; i += wide ? 2 * (numRows - row - 1) : 2 * row) {
 					zigzagString += chars[i];
 					wide = !wide;
 				}

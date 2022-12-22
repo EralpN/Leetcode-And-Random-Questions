@@ -34,11 +34,9 @@ password consists of letters, digits, dot '.' or exclamation mark '!'.
 
  */
 
-public class P0420StrongPasswordCheckerHard
-{
+public class P0420StrongPasswordCheckerHard {
 
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		P0420StrongPasswordCheckerHard passCheck = new P0420StrongPasswordCheckerHard();
 		System.out.println(passCheck.strongPasswordChecker("a")); // 5
 		System.out.println(passCheck.strongPasswordChecker("aA1")); // 3
@@ -48,82 +46,65 @@ public class P0420StrongPasswordCheckerHard
 		System.out.println(passCheck.strongPasswordChecker("bbaaaaaaaaaaaaaaacccccc")); // 8
 		System.out.println(passCheck.strongPasswordChecker("aaaaaaaaaaaaaaaaaaaaaaaaaa")); // 12
 		System.out.println(passCheck.strongPasswordChecker("asd1sDasdasdasdasdasaaa")); // 3
-		System.out.println(passCheck.strongPasswordChecker("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")); //36
+		System.out.println(passCheck.strongPasswordChecker("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")); // 36
 		System.out.println(passCheck.strongPasswordChecker("aaaabbaaabbaaa123456A")); // 3
 		System.out.println(passCheck.strongPasswordChecker("FFFFFFFFFFFFFFF11111111111111111111AAA")); // 23
 	}
 
-	public int strongPasswordChecker(String password)
-	{
+	public int strongPasswordChecker(String password) {
 		char[] pass = password.toCharArray();
 		int sLenC = sLengthCheck(pass);
 		int lLenC = lLengthCheck(pass);
 		int ascC = hasLowerCase(pass) + hasUpperCase(pass) + hasNumber(pass);
 		int repC = hasRepeat(pass);
-		
-		
-		if (lLenC > 0)
-		{
-			if ((repC - (lLenC / 3)) > lLenC)
-			{
+
+		if (lLenC > 0) {
+			if ((repC - (lLenC / 3)) > lLenC) {
 				return Math.max(lLenC, repC - (lLenC / 3)) + ascC;
 			}
 			return lLenC + Math.max(ascC, repC - (lLenC / 3));
 		}
-		
+
 		return Math.max(Math.max(sLenC, ascC), repC);
 	}
 
-	public int sLengthCheck(char[] pass)
-	{
-		if (pass.length < 6)
-		{
+	public int sLengthCheck(char[] pass) {
+		if (pass.length < 6) {
 			return 6 - pass.length;
 		}
-		
+
 		return 0;
 	}
-	
-	public int lLengthCheck(char[] pass)
-	{
-		if (pass.length > 20)
-		{
+
+	public int lLengthCheck(char[] pass) {
+		if (pass.length > 20) {
 			return pass.length - 20;
 		}
-		
+
 		return 0;
 	}
 
-	public int hasLowerCase(char[] pass)
-	{
-		for (char c : pass)
-		{
-			if (c <= 'z' && c >= 'a')
-			{
+	public int hasLowerCase(char[] pass) {
+		for (char c : pass) {
+			if (c <= 'z' && c >= 'a') {
 				return 0;
 			}
 		}
 		return 1;
 	}
 
-	public int hasUpperCase(char[] pass)
-	{
-		for (char c : pass)
-		{
-			if (c <= 'Z' && c >= 'A')
-			{
+	public int hasUpperCase(char[] pass) {
+		for (char c : pass) {
+			if (c <= 'Z' && c >= 'A') {
 				return 0;
 			}
 		}
 		return 1;
 	}
 
-	public int hasNumber(char[] pass)
-	{
-		for (char c : pass)
-		{
-			if (c <= '9' && c >= '0')
-			{
+	public int hasNumber(char[] pass) {
+		for (char c : pass) {
+			if (c <= '9' && c >= '0') {
 				return 0;
 			}
 		}
@@ -131,32 +112,26 @@ public class P0420StrongPasswordCheckerHard
 	}
 
 	int highestRep = 0;
-	public int hasRepeat(char[] pass)
-	{
+
+	public int hasRepeat(char[] pass) {
 		int rep = 0;
-		
-		if (pass.length >= 3)
-		{
+
+		if (pass.length >= 3) {
 			char prev = pass[0];
 			int count = 1;
-			for (int i = 1; i < pass.length; i++)
-			{
-				if (prev == pass[i])
-				{
+			for (int i = 1; i < pass.length; i++) {
+				if (prev == pass[i]) {
 					count++;
-				}
-				else
-				{
+				} else {
 					rep = rep + (count / 3);
-					if (count > highestRep)
-					{
+					if (count > highestRep) {
 						highestRep = count;
 					}
 					count = 1;
 				}
 				prev = pass[i];
 			}
-			rep = rep + (count / 3);	
+			rep = rep + (count / 3);
 		}
 		return rep;
 	}
